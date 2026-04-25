@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>The Warning - Toulouse 2026</title>
+    <style>
+        body { background: #1a1a1a; color: #f1f1f1; font-family: 'Arial', sans-serif; text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100vh; margin: 0; }
+        h1 { color: #e63946; font-size: 3rem; text-transform: uppercase; letter-spacing: 5px; }
+        #countdown { font-size: 4rem; font-weight: bold; margin-top: 20px; }
+        .unit { font-size: 1.5rem; color: #888; margin-right: 15px; }
+    </style>
+</head>
+<body>
+    <h1>THE WARNING - TOULOUSE</h1>
+    <div id="countdown"></div>
+
+    <script>
+        const targetDate = new Date("July 6, 2026 20:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById("countdown").innerHTML = 
+                days + "<span class='unit'>j</span> " + 
+                hours + "<span class='unit'>h</span> " + 
+                minutes + "<span class='unit'>m</span>";
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "C'EST LE JOUR J !";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
